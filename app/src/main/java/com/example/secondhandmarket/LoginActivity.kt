@@ -18,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
 
         val a = 3
 
+        val a = 5
+
         binding.loginBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
