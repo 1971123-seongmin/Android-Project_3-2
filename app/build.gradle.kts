@@ -61,6 +61,4 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
 
-    implementation ("com.google.firebase:firebase-database-ktx:20.3.0")
-
 }
