@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         //아래 3줄은 데이터베이스 확인용 코드임!!
         val database = Firebase.database
         val myRef = database.getReference("message")
-        myRef.setValue("Hello, World!")
+        myRef.setValue("Hello, Worlda!")
 
         initNavigationBar()
     }
