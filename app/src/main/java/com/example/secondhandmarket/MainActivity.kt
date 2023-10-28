@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
 
-        //아래 3줄은 데이터베이스 확인용 코드임!!
+        //아래 3줄은 데이터베이스 확인용 코드임!! A
         val database = Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue("Hello, Worlda!")
