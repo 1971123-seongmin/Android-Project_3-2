@@ -16,4 +16,6 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
+    <include layout="@layout/toolbar"/>
+
 </FrameLayout>
