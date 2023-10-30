@@ -30,12 +30,7 @@
         app:backgroundTint="#CDDC39">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/items"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-    />
+    <include layout="@layout/recyclerview_item"/>
     <include layout="@layout/toolbar"/>
 
 </FrameLayout>
