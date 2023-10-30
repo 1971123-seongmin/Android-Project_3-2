@@ -52,11 +52,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "검색조건 실행", Toast.LENGTH_LONG).show()
                 return true
             }
+
+            R.id.board_write -> {
+                Toast.makeText(applicationContext, "글쓰기 실행", Toast.LENGTH_LONG).show()
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
-
+    }
         fun changeFragment(fragment: Fragment) {
-
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.Frame, fragment)

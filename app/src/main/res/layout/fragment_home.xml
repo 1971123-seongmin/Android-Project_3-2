@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
     tools:context=".HomeFragment">
 
@@ -15,6 +16,19 @@
         android:textColor="#CDDC39"
         android:textSize="30dp"
         android:textStyle="bold" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/board_write"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        android:elevation="6dp"
+        android:src="@drawable/baseline_create_24"
+        app:backgroundTint="#CDDC39">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <include layout="@layout/toolbar"/>
 
