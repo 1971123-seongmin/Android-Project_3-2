@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
+
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -27,9 +28,14 @@
         android:elevation="6dp"
         android:src="@drawable/baseline_create_24"
         app:backgroundTint="#CDDC39">
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+    />
     <include layout="@layout/toolbar"/>
 
 </FrameLayout>
