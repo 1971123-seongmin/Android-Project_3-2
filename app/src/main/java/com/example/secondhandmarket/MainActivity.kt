@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         val database = Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue("Hello, Worlda!")
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,12 +54,12 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            R.id.board_write -> {
-                Toast.makeText(applicationContext, "글쓰기 실행", Toast.LENGTH_LONG).show()
-                return true
-            }
+//            R.id.board_write -> {
+//                Toast.makeText(applicationContext, "글쓰기 실행", Toast.LENGTH_LONG).show()
+//                return true
+//           } 브랜치 확인
 
-            else -> return super.onOptionsItemSelected(item)
+           else -> return super.onOptionsItemSelected(item)
         }
         fun changeFragment(fragment: Fragment) {
             supportFragmentManager
