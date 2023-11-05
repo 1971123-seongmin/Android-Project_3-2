@@ -44,12 +44,4 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_container, homeFragment)
             .commit()
     }
-
-    private fun changeFragment(chatFragment: ChatFragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, chatFragment)
-            .commit()
-    }
-
 }
