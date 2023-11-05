@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -51,19 +51,21 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
 
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
-
 }
