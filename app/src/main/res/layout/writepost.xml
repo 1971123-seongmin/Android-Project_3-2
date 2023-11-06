@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
         android:gravity="center"
-        android:text="생성하기"
+        android:text="작성하기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
