@@ -32,6 +32,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity android:name=".WritePostActivity"
+            android:exported="true">
+
+
+        </activity>
     </application>
 
 </manifest>
