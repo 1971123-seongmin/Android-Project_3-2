@@ -10,20 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.FragmentHomeBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var storageRef: DatabaseReference
-    private lateinit var firebaseFireStore : FirebaseFirestore
     private lateinit var adapter : ItemAdapter
     private lateinit var itemList: MutableList<ItemModel>
+    private var writeButton: FloatingActionButton? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +30,16 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
 
+
+        // FAB (버튼) 클릭 이벤트 처리
+        writeButton = binding?.write
+        writeButton?.setOnClickListener {
+            // FAB 버튼 클릭 시 WritePostActivity로 전환
+            val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
+            startActivity(intent)
+        }
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +64,6 @@ class HomeFragment : Fragment() {
         itemRecyclerView?.visibility = View.GONE
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
-        firebaseFireStore = FirebaseFirestore.getInstance()
 
         storageRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

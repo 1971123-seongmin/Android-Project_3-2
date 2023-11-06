@@ -27,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
 
         changeFragment(HomeFragment)
-
-        val database = Firebase.database
-        val myRef = database.getReference("Items")
-        myRef.setValue("Hello, World!")
-
     }
 
     private fun changeFragment(homeFragment: HomeFragment) {
