@@ -37,14 +37,15 @@ class WritePostActivity : AppCompatActivity() {
             val description = descriptionEditText.text.toString()
             val price = priceEditText.text.toString()
             val userName = currentUser?.email
+            val status = true
 
             // 글 작성 및 업로드
-            uploadPost(title, description, price, userName)
+            uploadPost(title, description, price, userName, status)
             finish()
         })
     }
     // 글 작성 및 업로드
-    private fun uploadPost(title: String, description: String, price: String, seller: String?) {
+    private fun uploadPost(title: String, description: String, price: String, seller: String?, status:Boolean?) {
         // Firestore 컬렉션 "items"를 참조
         val itemsCollection = db.collection("items")
 
@@ -53,7 +54,8 @@ class WritePostActivity : AppCompatActivity() {
             "title" to title,
             "description" to description,
             "price" to price,
-            "seller" to seller
+            "seller" to seller,
+            "status" to status
         )
 
         // Firestore에 데이터 업로드

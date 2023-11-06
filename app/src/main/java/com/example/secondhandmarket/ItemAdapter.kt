@@ -30,7 +30,11 @@ class ItemAdapter(val itemList: ArrayList<ItemModel>): RecyclerView.Adapter<Item
         val currentItem = itemList[position]
         holder.itemImg.setImageResource(R.mipmap.ic_launcher)
         holder.itemTitle.text = currentItem.title
-        holder.itemStatus.text = currentItem.status.toString()
+        holder.itemStatus.text = if (currentItem.status) {
+            "판매 중"
+        } else {
+            "판매완료"
+        }
         holder.itemPrice.text = currentItem.price.toString()
     }
 
