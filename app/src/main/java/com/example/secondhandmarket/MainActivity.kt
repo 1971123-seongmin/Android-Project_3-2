@@ -3,8 +3,6 @@ package com.example.secondhandmarket
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-
 
 import com.example.secondhandmarket.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -22,9 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
         val email = user?.email
@@ -32,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
 
         changeFragment(HomeFragment)
-
     }
 
     private fun changeFragment(homeFragment: HomeFragment) {
