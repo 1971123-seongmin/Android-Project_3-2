@@ -45,10 +45,15 @@ class WritePostActivity : AppCompatActivity() {
 
     // 글 작성 및 업로드
     private fun uploadPost(title: String, description: String, price: String, seller: String?) {
+        val formattedPrice = "$price 원" // Append " 원" to the price
+
+        val itemStatus = "판매 중" // Set status to "판매 중"
+
         val itemData = hashMapOf(
             "title" to title,
             "description" to description,
-            "price" to price.toInt(),
+            "price" to formattedPrice, // Save formatted price
+            "status" to itemStatus, // Set status
             "seller" to seller
         )
 
@@ -64,4 +69,5 @@ class WritePostActivity : AppCompatActivity() {
                 // 업로드 실패 시 처리
             }
     }
+
 }

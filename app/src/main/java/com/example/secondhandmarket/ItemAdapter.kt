@@ -39,7 +39,15 @@ class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<I
             .into(holder.binding.itemImg)
 
         holder.binding.itemTitle.text = currentItem.title
-        holder.binding.itemStatus.text = currentItem.status.toString()
+
+        // Check the status and set the appropriate text
+        val statusText = if (currentItem.status == "판매 중") {
+            "판매 중"
+        } else {
+            "판매완료"
+        }
+
+        holder.binding.itemStatus.text = statusText
         holder.binding.itemPrice.text = currentItem.price.toString()
     }
 }
