@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
         val email = user?.email
@@ -32,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
 
         changeFragment(HomeFragment)
+
+        val database = Firebase.database
+        val myRef = database.getReference("Items")
+        myRef.setValue("Hello, World!")
 
     }
 

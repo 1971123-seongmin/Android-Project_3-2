@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
                             startActivity(intent)
                         }
                     })
-                    itemRecyclerView?.visibility = View.VISIBLE
+                    itemRecyclerView?.visibility = View.GONE
                 }
             }
 

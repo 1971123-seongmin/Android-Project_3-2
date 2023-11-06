@@ -7,10 +7,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class WritePostActivity : AppCompatActivity() {
-    private lateinit var db: FirebaseFirestore
+    private lateinit var dbRef: DatabaseReference
     private lateinit var titleEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var priceEditText: EditText
@@ -20,8 +21,8 @@ class WritePostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.writepost)
 
-        // Firebase Firestore 초기화
-        db = FirebaseFirestore.getInstance()
+        // Firebase Realtime Database 초기화
+        dbRef = FirebaseDatabase.getInstance().getReference("Items")
 
         val mAuth = FirebaseAuth.getInstance()
         val currentUser: FirebaseUser? = mAuth.currentUser
@@ -44,10 +45,6 @@ class WritePostActivity : AppCompatActivity() {
 
     // 글 작성 및 업로드
     private fun uploadPost(title: String, description: String, price: String, seller: String?) {
-        // Firestore 컬렉션 "items"를 참조
-        val itemsCollection = db.collection("items")
-
-        // 새로운 문서를 생성하고 데이터를 설정
         val itemData = hashMapOf(
             "title" to title,
             "description" to description,
@@ -55,11 +52,12 @@ class WritePostActivity : AppCompatActivity() {
             "seller" to seller
         )
 
-        // Firestore에 데이터 업로드
-        itemsCollection.add(itemData)
-            .addOnSuccessListener { documentReference ->
+        // Firebase Realtime Database에 데이터 업로드
+        val newItemRef = dbRef.push()
+        newItemRef.setValue(itemData)
+            .addOnSuccessListener {
                 // 성공적으로 업로드된 경우
-                val documentId = documentReference.id
+                val documentId = newItemRef.key
                 // 여기에서 추가적인 작업을 수행할 수 있음
             }
             .addOnFailureListener { e ->
