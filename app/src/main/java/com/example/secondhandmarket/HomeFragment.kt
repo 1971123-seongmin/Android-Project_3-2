@@ -15,11 +15,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
-    private var binding: FragmentHomeBinding? = null
-    private lateinit var itemList: ArrayList<ItemModel>
-    private lateinit var dbRef: DatabaseReference
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var storageRef: DatabaseReference
+    private lateinit var firebaseFireStore : FirebaseFirestore
+    private lateinit var adapter : ItemAdapter
+    private lateinit var itemList: MutableList<ItemModel>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,30 +31,37 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
 
-        itemList = arrayListOf<ItemModel>()
-
-        val recyclerView = binding?.recyclerView
-        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-
-        getItemData()
-
-        return binding?.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        init()
+        getItemData()
+
+    }
+
+    private fun init(){
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+
+        itemList = mutableListOf()
+        adapter = ItemAdapter(itemList)
+        binding.recyclerView.adapter = adapter
     }
 
     fun getItemData() {
         val itemRecyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
         itemRecyclerView?.visibility = View.GONE
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Items")
+        storageRef = FirebaseDatabase.getInstance().reference.child("Items")
+        firebaseFireStore = FirebaseFirestore.getInstance()
 
-        dbRef.addValueEventListener(object : ValueEventListener {
+        storageRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 itemList.clear()
 
                 if (snapshot.exists()) {
@@ -58,7 +69,6 @@ class HomeFragment : Fragment() {
                         val itemData = itemSnap.getValue(ItemModel::class.java)
                         itemList.add(itemData!!)
                     }
-
                     val mAdapter = ItemAdapter(itemList)
                     itemRecyclerView?.adapter = mAdapter
 
@@ -74,7 +84,7 @@ class HomeFragment : Fragment() {
                             startActivity(intent)
                         }
                     })
-                    itemRecyclerView?.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.VISIBLE
                 }
             }
 
