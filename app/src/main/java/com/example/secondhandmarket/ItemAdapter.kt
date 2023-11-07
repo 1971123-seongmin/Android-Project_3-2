@@ -48,7 +48,7 @@ class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<I
         }
 
         holder.binding.itemStatus.text = statusText
-        holder.binding.itemPrice.text = currentItem.price.toString()
+        holder.binding.itemPrice.text = currentItem.price
     }
 }
 

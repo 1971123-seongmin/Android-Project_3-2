@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -37,6 +38,7 @@ class WritePostActivity : AppCompatActivity() {
             val price = priceEditText.text.toString()
             val userName = currentUser?.email
 
+
             // 글 작성 및 업로드
             uploadPost(title, description, price, userName)
             finish()
@@ -44,30 +46,26 @@ class WritePostActivity : AppCompatActivity() {
     }
 
     // 글 작성 및 업로드
-    private fun uploadPost(title: String, description: String, price: String, seller: String?) {
-        val formattedPrice = "$price 원" // Append " 원" to the price
-
-        val itemStatus = "판매 중" // Set status to "판매 중"
+    private fun uploadPost(title: String?, description: String?, price: String?, seller: String?) {
+        val formattedPrice = "$price 원"
+        val itemStatus = "판매 중"
 
         val itemData = hashMapOf(
             "title" to title,
             "description" to description,
-            "price" to formattedPrice, // Save formatted price
-            "status" to itemStatus, // Set status
+            "price" to formattedPrice,
+            "status" to itemStatus,
             "seller" to seller
         )
 
-        // Firebase Realtime Database에 데이터 업로드
         val newItemRef = dbRef.push()
         newItemRef.setValue(itemData)
             .addOnSuccessListener {
-                // 성공적으로 업로드된 경우
                 val documentId = newItemRef.key
-                // 여기에서 추가적인 작업을 수행할 수 있음
+               Toast.makeText(this,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
-                // 업로드 실패 시 처리
+                Toast.makeText(this,"업로드 실패",Toast.LENGTH_SHORT).show()
             }
     }
-
 }
