@@ -152,7 +152,8 @@ class HomeFragment : Fragment() {
                     //startActivity(intent)
                     Toast.makeText(context, "same user", Toast.LENGTH_SHORT).show()
                 } else { //다르면 판매 글 보기 화면으로 이동
-                    Toast.makeText(context, "different user", Toast.LENGTH_SHORT).show()
+                    val intent2 = Intent(requireContext(), DetailScreenActivity::class.java)
+                    startActivity(intent2)
                 }
 
 
