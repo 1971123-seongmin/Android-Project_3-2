@@ -1,15 +1,12 @@
 package com.example.secondhandmarket
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.ArrayList
+import com.example.secondhandmarket.databinding.ItemBinding
+import com.squareup.picasso.Picasso
 
-@Suppress("DEPRECATION")
-class ItemAdapter(val itemList: ArrayList<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
@@ -21,34 +18,37 @@ class ItemAdapter(val itemList: ArrayList<ItemModel>): RecyclerView.Adapter<Item
         mListener = clickListener
     }
 
+    inner class ViewHolder(var binding : ItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
-        return ViewHolder(itemView, mListener)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = itemList[position]
-        holder.itemImg.setImageResource(R.mipmap.ic_launcher)
-        holder.itemTitle.text = currentItem.title
-        holder.itemStatus.text = currentItem.status.toString()
-        holder.itemPrice.text = currentItem.price.toString()
+        val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    class ViewHolder(itemView: View, clickListener: onItemClickListener) :
-        RecyclerView.ViewHolder(itemView) {
-        val itemImg: ImageView = itemView.findViewById(R.id.item_img)
-        val itemTitle: TextView = itemView.findViewById(R.id.item_title)
-        val itemStatus: TextView = itemView.findViewById(R.id.item_status)
-        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
-        init {
-            itemView.setOnClickListener {
-                clickListener.onItemClick(adapterPosition)
-            }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentItem = itemList[position]
+
+        val imageUrl = currentItem.imgUri
+
+        Picasso.get()
+            .load(imageUrl)
+            .into(holder.binding.itemImg)
+
+        holder.binding.itemTitle.text = currentItem.title
+
+        // Check the status and set the appropriate text
+        val statusText = if (currentItem.status == "판매 중") {
+            "판매 중"
+        } else {
+            "판매완료"
         }
+
+        holder.binding.itemStatus.text = statusText
+        holder.binding.itemPrice.text = currentItem.price
     }
 }
 
