@@ -2,22 +2,24 @@ package com.example.secondhandmarket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
 import com.squareup.picasso.Picasso
 
-class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
     }
+    fun updateList(newList: List<ItemModel>) {
+        itemList = newList
+        notifyDataSetChanged()
+    }
 
     fun setOnItemClickListener(clickListener: ItemAdapter.onItemClickListener) {
         mListener = clickListener
-
     }
 
     inner class ViewHolder(var binding : ItemBinding) :

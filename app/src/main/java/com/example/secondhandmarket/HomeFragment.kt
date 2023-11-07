@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +20,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class HomeFragment : Fragment() {
+    private var selectedStatus: String? = null
     private lateinit var binding: FragmentHomeBinding
     private lateinit var storageRef: DatabaseReference
-    private lateinit var adapter : ItemAdapter
+    private lateinit var adapter: ItemAdapter
     private lateinit var itemList: MutableList<ItemModel>
     private var writeButton: FloatingActionButton? = null
 
@@ -40,6 +42,40 @@ class HomeFragment : Fragment() {
             val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
             startActivity(intent)
         }
+
+        // 팝업 메뉴 코드 추가
+        val menuFilter = binding.menuFilter
+        menuFilter?.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), menuFilter)
+            popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.sell_progress -> {
+                        // "판매중" 메뉴 아이템 클릭 시 처리
+                        selectedStatus = "판매 중"
+                        updateItemList()
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.sell_completed -> {
+
+                        selectedStatus = "판매 완료"
+                        updateItemList()
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.menu_show_all -> {
+                        // "모두" 메뉴 아이템 클릭 시 처리
+                        selectedStatus = null
+                        updateItemList()
+                        return@setOnMenuItemClickListener true
+                    }
+                    else -> return@setOnMenuItemClickListener false
+                }
+            }
+
+            popupMenu.show()
+        }
+
         return binding.root
     }
 
@@ -49,6 +85,20 @@ class HomeFragment : Fragment() {
         init()
         getItemData()
 
+    private fun updateItemList() {
+        val filteredItems = when (selectedStatus) {
+            "판매 중" -> {
+                itemList.filter { it.status == "판매 중" }
+            }
+            "판매 완료" -> {
+                itemList.filter { it.status == "판매 완료" }
+            }
+            else -> {
+                itemList
+            }
+        }
+Log.d(selectedStatus,"")
+        adapter.updateList(filteredItems)
     }
 
     private fun init(){
@@ -56,7 +106,7 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
         itemList = mutableListOf()
-        adapter = ItemAdapter(itemList)
+        adapter = ItemAdapter(itemList) // 어댑터 초기화
         binding.recyclerView.adapter = adapter
     }
 
@@ -68,9 +118,16 @@ class HomeFragment : Fragment() {
         itemRecyclerView?.adapter = mAdapter
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
-        storageRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
 
+        val query = if (selectedStatus != null) {
+            // 선택된 상태에 따라 Firebase 쿼리 설정
+            storageRef.orderByChild("status").equalTo(selectedStatus)
+        } else {
+            storageRef // 모든 항목 가져오기
+        }
+
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
 
                 if (snapshot.exists()) {
