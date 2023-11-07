@@ -6,12 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
 import com.squareup.picasso.Picasso
 
-class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
+    }
+    fun updateList(newList: List<ItemModel>) {
+        itemList = newList
+        notifyDataSetChanged()
     }
 
     fun setOnItemClickListener(clickListener: ItemAdapter.onItemClickListener) {
@@ -40,7 +44,7 @@ class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<I
 
         holder.binding.itemTitle.text = currentItem.title
 
-        // Check the status and set the appropriate text
+
         val statusText = if (currentItem.status == "판매 중") {
             "판매 중"
         } else {
