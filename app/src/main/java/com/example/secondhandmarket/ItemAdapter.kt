@@ -2,6 +2,7 @@ package com.example.secondhandmarket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
 import com.squareup.picasso.Picasso
@@ -16,6 +17,7 @@ class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<I
 
     fun setOnItemClickListener(clickListener: ItemAdapter.onItemClickListener) {
         mListener = clickListener
+
     }
 
     inner class ViewHolder(var binding : ItemBinding) :
@@ -39,6 +41,11 @@ class ItemAdapter(private val itemList: List<ItemModel>): RecyclerView.Adapter<I
             .into(holder.binding.itemImg)
 
         holder.binding.itemTitle.text = currentItem.title
+
+        //리사이클러 뷰의 아이템 클릭리스너
+        holder.binding.root.setOnClickListener {
+            mListener?.onItemClick(position)
+        }
 
         // Check the status and set the appropriate text
         val statusText = if (currentItem.status == "판매 중") {

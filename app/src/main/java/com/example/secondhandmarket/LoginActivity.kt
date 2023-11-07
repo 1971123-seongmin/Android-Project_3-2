@@ -20,10 +20,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val a = 12345
-        val b = 59606
-
-        val a = 3
 
         auth = Firebase.auth
 
