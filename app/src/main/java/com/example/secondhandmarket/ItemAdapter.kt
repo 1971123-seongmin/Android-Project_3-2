@@ -22,8 +22,7 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         mListener = clickListener
     }
 
-    inner class ViewHolder(var binding : ItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding : ItemBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

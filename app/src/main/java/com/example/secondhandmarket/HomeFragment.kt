@@ -27,13 +27,8 @@ class HomeFragment : Fragment() {
     private lateinit var itemList: MutableList<ItemModel>
     private var writeButton: FloatingActionButton? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
 
         // FAB (버튼) 클릭 이벤트 처리
         writeButton = binding?.write
@@ -81,9 +76,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         init()
         getItemData()
+    }
 
     private fun updateItemList() {
         val filteredItems = when (selectedStatus) {
@@ -97,7 +92,7 @@ class HomeFragment : Fragment() {
                 itemList
             }
         }
-Log.d(selectedStatus,"")
+        Log.d(selectedStatus, "")
         adapter.updateList(filteredItems)
     }
 
@@ -113,9 +108,6 @@ Log.d(selectedStatus,"")
     fun getItemData() {
         val itemRecyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
         itemRecyclerView?.visibility = View.GONE
-
-        val mAdapter = ItemAdapter(itemList)
-        itemRecyclerView?.adapter = mAdapter
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
 
@@ -135,6 +127,9 @@ Log.d(selectedStatus,"")
                         val itemData = itemSnap.getValue(ItemModel::class.java)
                         itemList.add(itemData!!)
                     }
+                    // 여기서 itemList를 업데이트하고 어댑터에 새 목록을 설정
+                    adapter.updateList(itemList)
+
                     binding.recyclerView.visibility = View.VISIBLE
                 }
             }
@@ -144,7 +139,7 @@ Log.d(selectedStatus,"")
             }
         })
 
-        mAdapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener {
+        adapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 Log.d("안녕", "heelo")
