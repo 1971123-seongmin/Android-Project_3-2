@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.FragmentHomeBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -139,17 +140,22 @@ class HomeFragment : Fragment() {
             }
         })
 
+        val userEmail = FirebaseAuth.getInstance().currentUser?.email //현재 사용자의 email
+
+        //리사이클러뷰의 아이템 클릭 이벤트
         adapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
-                val intent = Intent(requireContext(), LoginActivity::class.java)
-                Log.d("안녕", "heelo")
+                val ClickedItemSeller = itemList[position].seller.toString()
 
-                intent.putExtra("itemImg", itemList[position].imgUri)
-                intent.putExtra("itemTitle", itemList[position].title)
-                intent.putExtra("itemStatus", itemList[position].status)
-                intent.putExtra("itemPrice", itemList[position].price)
+                if(userEmail == ClickedItemSeller) { //현재 사용자의 email과 글 작성자 email 동일하면 수정 화면으로 이동
+                    //val intent = Intent(requireContext(), LoginActivity::class.java) -> 본인이 만든 페이지로 변경
+                    //startActivity(intent)
+                    Toast.makeText(context, "same user", Toast.LENGTH_SHORT).show()
+                } else { //다르면 판매 글 보기 화면으로 이동
+                    Toast.makeText(context, "different user", Toast.LENGTH_SHORT).show()
+                }
 
-                startActivity(intent)
+
             }
         })
     }
