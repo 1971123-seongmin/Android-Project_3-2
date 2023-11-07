@@ -5,7 +5,7 @@
         android:title="판매 중" />
     <item
         android:id="@+id/sell_completed"
-        android:title="판매완료" />
+        android:title="판매 완료" />
     <item
         android:id="@+id/menu_show_all"
         android:title="모두" />

@@ -2,6 +2,7 @@ package com.example.secondhandmarket
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
         // FAB (버튼) 클릭 이벤트 처리
         writeButton = binding.write
         writeButton?.setOnClickListener {
-            // FAB 버튼 클릭 시 WritePostActivity로 전환
+
             val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
             startActivity(intent)
         }
@@ -56,8 +57,8 @@ class HomeFragment : Fragment() {
                         return@setOnMenuItemClickListener true
                     }
                     R.id.sell_completed -> {
-                        // "판매완료" 메뉴 아이템 클릭 시 처리
-                        selectedStatus = "판매완료"
+
+                        selectedStatus = "판매 완료"
                         updateItemList()
                         return@setOnMenuItemClickListener true
                     }
@@ -86,16 +87,16 @@ class HomeFragment : Fragment() {
     private fun updateItemList() {
         val filteredItems = when (selectedStatus) {
             "판매 중" -> {
-                itemList.filter { it.status == "판매 중"}
+                itemList.filter { it.status == "판매 중" }
             }
-            "판매완료" -> {
-                itemList.filter { it.status == "판매완료" }
+            "판매 완료" -> {
+                itemList.filter { it.status == "판매 완료" }
             }
             else -> {
                 itemList
             }
         }
-
+Log.d(selectedStatus,"")
         adapter.updateList(filteredItems)
     }
 
@@ -105,7 +106,7 @@ class HomeFragment : Fragment() {
 
         itemList = mutableListOf()
         adapter = ItemAdapter(itemList) // 어댑터 초기화
-        binding.recyclerView.adapter = adapter // RecyclerView에 어댑터 설정
+        binding.recyclerView.adapter = adapter
     }
 
     fun getItemData() {
@@ -114,8 +115,14 @@ class HomeFragment : Fragment() {
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
 
-        // "status" 필드가 "판매 중"인 아이템만 가져오도록 쿼리 설정
-        storageRef.orderByChild("status").equalTo("판매 중").addValueEventListener(object : ValueEventListener {
+        val query = if (selectedStatus != null) {
+            // 선택된 상태에 따라 Firebase 쿼리 설정
+            storageRef.orderByChild("status").equalTo(selectedStatus)
+        } else {
+            storageRef // 모든 항목 가져오기
+        }
+
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
 
@@ -125,10 +132,10 @@ class HomeFragment : Fragment() {
                         itemList.add(itemData!!)
                     }
 
-                    val mAdapter = ItemAdapter(itemList)
-                    itemRecyclerView?.adapter = mAdapter
+                    // 여기서 itemList를 업데이트하고 어댑터에 새 목록을 설정
+                    adapter.updateList(itemList)
 
-                    mAdapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener {
+                    adapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener {
                         override fun onItemClick(position: Int) {
                             val intent = Intent(requireContext(), MainActivity::class.java)
 

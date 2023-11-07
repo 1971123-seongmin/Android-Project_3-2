@@ -48,7 +48,7 @@ class WritePostActivity : AppCompatActivity() {
     // 글 작성 및 업로드
     private fun uploadPost(title: String?, description: String?, price: String?, seller: String?) {
         val formattedPrice = "$price 원"
-        val itemStatus = "판매 중"
+        val itemStatus = "판매 완료"
 
         val itemData = hashMapOf(
             "title" to title,
