@@ -29,12 +29,15 @@ class DetailScreenActivity : AppCompatActivity() {
         }
     }
     fun showText() { //판매 글 상세히 보여주는 함수
-        database = FirebaseDatabase.getInstance().getReference("Items")
+
+        val key = intent.getStringExtra("itemKey").toString() //Items 밑에 고유한 키 값 받아옴
+        database = FirebaseDatabase.getInstance().getReference("Items").child(key)
+
         database.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 //val item = snapshot.getValue(ItemModel::class.java)
-                val item = snapshot.children.firstOrNull()?.getValue(ItemModel::class.java)
+                val item = snapshot.getValue(ItemModel::class.java)
                 binding.title.text = item?.title
                 binding.description.text = item?.description
                 binding.price.text = item?.price

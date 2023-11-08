@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ItemAdapter
     private lateinit var itemList: MutableList<ItemModel>
     private var writeButton: FloatingActionButton? = null
+    private var cnt = 0; //파이어베이스 db에 저장될 고유 키 번호
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -34,8 +35,10 @@ class HomeFragment : Fragment() {
         // FAB (버튼) 클릭 이벤트 처리
         writeButton = binding?.write
         writeButton?.setOnClickListener {
+            cnt ++
             // FAB 버튼 클릭 시 WritePostActivity로 전환
             val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
+            intent.putExtra("cnt", cnt) // cnt 값을 Intent에 추가
             startActivity(intent)
         }
 
@@ -119,12 +122,18 @@ class HomeFragment : Fragment() {
             storageRef // 모든 항목 가져오기
         }
 
+        val keys = mutableListOf<String>() //DB에서 Items 밑에 고유 키값을 가져오기위한 list
+
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
 
                 if (snapshot.exists()) {
+
                     for (itemSnap in snapshot.children) {
+                        val key = itemSnap.key
+                        keys.add(key!!) // 고유 키값을 keys 리스트에 추가
+
                         val itemData = itemSnap.getValue(ItemModel::class.java)
                         itemList.add(itemData!!)
                     }
@@ -153,6 +162,8 @@ class HomeFragment : Fragment() {
                     Toast.makeText(context, "same user", Toast.LENGTH_SHORT).show()
                 } else { //다르면 판매 글 보기 화면으로 이동
                     val intent2 = Intent(requireContext(), DetailScreenActivity::class.java)
+                    val itemKey = keys[position] // 클릭한 아이템의 고유 키값 가져오기
+                    intent2.putExtra("itemKey", itemKey) // 클릭한 아이템의 고유 키값을 Intent에 넣어서 전달
                     startActivity(intent2)
                 }
 
