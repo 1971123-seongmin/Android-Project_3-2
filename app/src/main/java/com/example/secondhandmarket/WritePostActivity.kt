@@ -17,6 +17,7 @@ class WritePostActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var priceEditText: EditText
     private lateinit var uploadButton: Button
+    private var cnt = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,10 @@ class WritePostActivity : AppCompatActivity() {
         val formattedPrice = "$price 원"
         val itemStatus = "판매 중"
 
+        cnt = intent.getIntExtra("cnt", 0).toInt() // Intent로부터 cnt 값을 읽어옴
+        val sellerPath = seller?.replace(".", "_")
+        val uniqueKey = "$sellerPath${cnt++}" // 각 글마다 고유한 키를 생성
+
         val itemData = hashMapOf(
             "title" to title,
             "description" to description,
@@ -58,7 +63,7 @@ class WritePostActivity : AppCompatActivity() {
             "seller" to seller
         )
 
-        val newItemRef = dbRef.push()
+        val newItemRef = dbRef.child(uniqueKey) //글작성자 + 번호로 고유 키 값 생성
         newItemRef.setValue(itemData)
             .addOnSuccessListener {
                 val documentId = newItemRef.key
