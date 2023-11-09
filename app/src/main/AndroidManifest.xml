@@ -18,6 +18,13 @@
             android:name=".DetailScreenActivity"
             android:exported="false" />
         <activity
+            android:name=".ModifyScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditScreenActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

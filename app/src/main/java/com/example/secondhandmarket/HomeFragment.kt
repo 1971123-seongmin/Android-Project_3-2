@@ -157,9 +157,11 @@ class HomeFragment : Fragment() {
                 val ClickedItemSeller = itemList[position].seller.toString()
 
                 if(userEmail == ClickedItemSeller) { //현재 사용자의 email과 글 작성자 email 동일하면 수정 화면으로 이동
-                    //val intent = Intent(requireContext(), LoginActivity::class.java) -> 본인이 만든 페이지로 변경
-                    //startActivity(intent)
-                    Toast.makeText(context, "same user", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireContext(), ModifyScreenActivity::class.java)
+                    val itemKey = keys[position] // 클릭한 아이템의 고유 키값 가져오기
+                    intent.putExtra("itemKey", itemKey) // 클릭한 아이템의 고유 키값을 Intent에 넣어서 전달
+                    startActivity(intent)
+
                 } else { //다르면 판매 글 보기 화면으로 이동
                     val intent2 = Intent(requireContext(), DetailScreenActivity::class.java)
                     val itemKey = keys[position] // 클릭한 아이템의 고유 키값 가져오기
