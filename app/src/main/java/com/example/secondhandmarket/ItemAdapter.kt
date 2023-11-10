@@ -35,16 +35,8 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         return itemList.size
     }
 
-    fun setImgUri(imgUri : String)  {
-        this.imgUri = imgUri
-    }
-    fun getImgUri() : String {
-        return this.imgUri
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
-        val imgUri = this.getImgUri()
 
         //이미지를 firebase storage에서 불러오기
         val storageReference = FirebaseStorage.getInstance().reference
