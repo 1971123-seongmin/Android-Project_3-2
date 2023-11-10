@@ -35,7 +35,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.279" />
 
-
     <EditText
         android:id="@+id/cPrice"
         android:layout_width="200dp"
