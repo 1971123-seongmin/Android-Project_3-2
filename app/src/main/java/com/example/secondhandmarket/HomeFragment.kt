@@ -42,6 +42,13 @@ class HomeFragment : Fragment() {
             intent.putExtra("cnt", cnt) // cnt 값을 Intent에 추가
             startActivity(intent)
         }
+        
+        //채팅 보기 페이지
+        val menuChat = binding.menuChat
+        menuChat.setOnClickListener {
+            val intent = Intent(requireContext(), showChatActivity::class.java)
+            startActivity(intent)
+        }
 
         // 팝업 메뉴 코드 추가
         val menuFilter = binding.menuFilter

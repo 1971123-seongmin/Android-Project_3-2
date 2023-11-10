@@ -19,7 +19,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/menu_chat"
+        android:id="@+id/menuChat"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_weight="1"

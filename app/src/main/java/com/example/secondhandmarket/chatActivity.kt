@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,8 @@ class chatActivity : AppCompatActivity() {
 
         val sender = FirebaseAuth.getInstance().currentUser?.email.toString() //현재 사용자 이메일
         val receiver = intent.getStringExtra("userEmail") //판매자 이메일 (메시지 수신)
+        val senderEmail = findViewById<TextView>(R.id.senderEmail)
+        senderEmail.text = receiver.toString() + "님과의 대화방"
 
         recyclerView.adapter = chatAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -86,6 +89,8 @@ class chatActivity : AppCompatActivity() {
         sendBtn.setOnClickListener {
             val msg = editChat.text.toString()
             sendMsg(sender, receiver, msg)
+
+            editChat.text.clear()
         }
     }
 
