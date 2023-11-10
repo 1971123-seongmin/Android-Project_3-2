@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val HomeFragment by lazy { HomeFragment() }
-    private val ChatFragment by lazy { ChatFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
         val email = user?.email
 
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()

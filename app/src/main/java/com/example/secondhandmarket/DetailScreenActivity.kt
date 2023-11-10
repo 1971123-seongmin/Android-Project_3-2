@@ -1,5 +1,6 @@
 package com.example.secondhandmarket
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,6 +17,7 @@ class DetailScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailScreenBinding
     private lateinit var database: DatabaseReference
+    private lateinit var user : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,9 @@ class DetailScreenActivity : AppCompatActivity() {
 
         binding.sendMsg.setOnClickListener{
             //메시지 보내는 화면으로 이동
+            val intent = Intent(this, chatActivity::class.java)
+            intent.putExtra("userEmail", user)
+            startActivity(intent)
         }
     }
     fun showText() { //판매 글 상세히 보여주는 함수
@@ -43,11 +48,14 @@ class DetailScreenActivity : AppCompatActivity() {
                 binding.price.text = item?.price
                 binding.soldTF.text = item?.status
                 binding.name.text = item?.seller
+
+                user = item?.seller?.toString() ?: "DefaultUser"
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@DetailScreenActivity, "error: 불러오기 실패", Toast.LENGTH_SHORT).show()
             }
+
         })
     }
 }
