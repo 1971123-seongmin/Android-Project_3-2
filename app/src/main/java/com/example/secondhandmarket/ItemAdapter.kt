@@ -21,7 +21,7 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(clickListener: ItemAdapter.onItemClickListener) {
+    fun setOnItemClickListener(clickListener: onItemClickListener) {
         mListener = clickListener
     }
 
