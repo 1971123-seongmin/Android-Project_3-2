@@ -1,6 +1,7 @@
 package com.example.secondhandmarket
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -136,6 +137,10 @@ class HomeFragment : Fragment() {
 
                         val itemData = itemSnap.getValue(ItemModel::class.java)
                         itemList.add(itemData!!)
+
+                        //이미지를 firebase storage에서 불러오기
+                        //adapter.setImgUri(itemData.imgUri!!)
+
                     }
                     // 여기서 itemList를 업데이트하고 어댑터에 새 목록을 설정
                     adapter.updateList(itemList)

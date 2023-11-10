@@ -1,14 +1,17 @@
 package com.example.secondhandmarket
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
+    private var imgUri : String = ""
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
@@ -32,14 +35,30 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         return itemList.size
     }
 
+    fun setImgUri(imgUri : String)  {
+        this.imgUri = imgUri
+    }
+    fun getImgUri() : String {
+        return this.imgUri
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
+        val imgUri = this.getImgUri()
 
-        val imageUrl = currentItem.imgUri
+        //이미지를 firebase storage에서 불러오기
+        val storageReference = FirebaseStorage.getInstance().reference
+        val imageReference = storageReference.child("image/item1.jpg")
+        Log.d("로그", imgUri)
 
-        Picasso.get()
-            .load(imageUrl)
-            .into(holder.binding.itemImg)
+        imageReference.downloadUrl.addOnSuccessListener { uri ->
+            Picasso.get()
+                .load(uri)
+                .into(holder.binding.itemImg)
+        }.addOnFailureListener { e ->
+            Log.e("loadItemImage", "Failed to load image. Error: $e")
+        }
+
 
         holder.binding.itemTitle.text = currentItem.title
 
