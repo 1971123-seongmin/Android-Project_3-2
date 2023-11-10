@@ -34,13 +34,6 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
-
-        val imageUrl = currentItem.imgUri
-
-        Picasso.get()
-            .load(imageUrl)
-            .into(holder.binding.itemImg)
-
         holder.binding.itemTitle.text = currentItem.title
 
         //리사이클러 뷰의 아이템 클릭리스너
@@ -49,8 +42,8 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         }
 
         // Check the status and set the appropriate text
-        val statusText = if (currentItem.status == "판매 중") {
-            "판매 중"
+        val statusText = if (currentItem.status == "판매중") {
+            "판매중"
         } else {
             "판매완료"
         }

@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="100dp"
                 android:text="Main title"
-                android:textSize="20sp"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:id="@+id/item_price"
