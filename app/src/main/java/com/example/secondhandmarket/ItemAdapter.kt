@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 
 class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
@@ -35,12 +37,6 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
 
-        val imageUrl = currentItem.imgUri
-
-        Picasso.get()
-            .load(imageUrl)
-            .into(holder.binding.itemImg)
-
         holder.binding.itemTitle.text = currentItem.title
 
         //리사이클러 뷰의 아이템 클릭리스너
@@ -49,12 +45,11 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         }
 
         // Check the status and set the appropriate text
-        val statusText = if (currentItem.status == "판매 중") {
-            "판매 중"
+        val statusText = if (currentItem.status == "판매중") {
+            "판매중"
         } else {
             "판매완료"
         }
-
         holder.binding.itemStatus.text = statusText
         holder.binding.itemPrice.text = currentItem.price
     }

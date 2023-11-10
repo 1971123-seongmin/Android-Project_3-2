@@ -41,8 +41,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:textSize="15sp"
-                android:text="판매여부" />
+                android:padding="2dp"
+                android:textSize="12sp"
+                android:text="판매여부"
+                android:background="@drawable/title_border"/>
 
             <TextView
                 android:id="@+id/item_title"

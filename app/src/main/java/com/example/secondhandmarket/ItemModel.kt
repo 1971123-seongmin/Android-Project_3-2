@@ -1,6 +1,6 @@
 package com.example.secondhandmarket
 data class ItemModel(
-    val imgUri: String? = null,
+    val imgUrl: String? = null,
     val seller: String? = null,
     val title: String? = null,
     val status: String? = null,

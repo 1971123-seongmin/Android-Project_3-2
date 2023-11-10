@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
     private var selectedStatus: String? = null
@@ -52,13 +54,13 @@ class HomeFragment : Fragment() {
                 when (item.itemId) {
                     R.id.sell_progress -> {
                         // "판매중" 메뉴 아이템 클릭 시 처리
-                        selectedStatus = "판매 중"
+                        selectedStatus = "판매중"
                         updateItemList()
                         return@setOnMenuItemClickListener true
                     }
                     R.id.sell_completed -> {
 
-                        selectedStatus = "판매 완료"
+                        selectedStatus = "판매완료"
                         updateItemList()
                         return@setOnMenuItemClickListener true
                     }
@@ -86,11 +88,11 @@ class HomeFragment : Fragment() {
 
     private fun updateItemList() {
         val filteredItems = when (selectedStatus) {
-            "판매 중" -> {
-                itemList.filter { it.status == "판매 중" }
+            "판매중" -> {
+                itemList.filter { it.status == "판매중" }
             }
-            "판매 완료" -> {
-                itemList.filter { it.status == "판매 완료" }
+            "판매완료" -> {
+                itemList.filter { it.status == "판매완료" }
             }
             else -> {
                 itemList
@@ -137,9 +139,9 @@ class HomeFragment : Fragment() {
                         val itemData = itemSnap.getValue(ItemModel::class.java)
                         itemList.add(itemData!!)
                     }
+
                     // 여기서 itemList를 업데이트하고 어댑터에 새 목록을 설정
                     adapter.updateList(itemList)
-
                     binding.recyclerView.visibility = View.VISIBLE
                 }
             }
@@ -148,6 +150,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "error: $error", Toast.LENGTH_SHORT).show()
             }
         })
+
 
         val userEmail = FirebaseAuth.getInstance().currentUser?.email //현재 사용자의 email
 
@@ -168,8 +171,6 @@ class HomeFragment : Fragment() {
                     intent2.putExtra("itemKey", itemKey) // 클릭한 아이템의 고유 키값을 Intent에 넣어서 전달
                     startActivity(intent2)
                 }
-
-
             }
         })
     }
