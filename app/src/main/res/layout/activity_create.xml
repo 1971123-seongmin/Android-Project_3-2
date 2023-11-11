@@ -19,10 +19,9 @@ tools:context=".CreateActivity">
         android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.183" />
 
     <EditText
         android:id="@+id/createemail"
@@ -34,10 +33,10 @@ tools:context=".CreateActivity">
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <EditText
         android:id="@+id/createpwd"
@@ -49,10 +48,10 @@ tools:context=".CreateActivity">
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <EditText
         android:id="@+id/cname"
@@ -64,10 +63,11 @@ tools:context=".CreateActivity">
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.427" />
+
 
     <EditText
         android:id="@+id/cbirth"
@@ -79,11 +79,10 @@ tools:context=".CreateActivity">
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.766" />
-
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/realCreateBtn"
@@ -155,16 +154,7 @@ tools:context=".CreateActivity">
         app:layout_constraintTop_toTopOf="@+id/cbirth"
         />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="55dp"
-        android:layout_height="57dp"
-        app:srcCompat="@drawable/clover"
-        tools:layout_editor_absoluteX="29dp"
-        app:layout_constraintEnd_toStartOf="@+id/cMaintext"
-        app:layout_constraintBottom_toBottomOf="@+id/cMaintext"
-        app:layout_constraintTop_toTopOf="@+id/cMaintext"
-        />
+
 
     <Button
         android:id="@+id/backbutton"
