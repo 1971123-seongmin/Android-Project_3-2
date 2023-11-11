@@ -31,6 +31,8 @@ public class CreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+
+
         setContentView(R.layout.activity_create);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -41,7 +43,6 @@ public class CreateActivity extends AppCompatActivity {
         mEtName = findViewById(R.id.cname);
         mEtBirth = findViewById(R.id.cbirth);
         mBtnRegister = findViewById(R.id.realCreateBtn);
-
         mBtnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
