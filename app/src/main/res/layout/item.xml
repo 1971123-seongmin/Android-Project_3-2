@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/view_border">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_item"
@@ -41,7 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:textSize="15sp"
+                android:textSize="20sp"
+                android:fontFamily="@font/font"
                 android:text="판매여부" />
 
             <TextView
@@ -50,7 +52,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="100dp"
                 android:text="Main title"
-                android:textSize="20sp"/>
+                android:fontFamily="@font/font"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/item_price"
@@ -58,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:text="판매가격"
-                android:textSize="15sp"
+                android:textSize="25sp"
+                android:fontFamily="@font/font"
                 android:textStyle="bold"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

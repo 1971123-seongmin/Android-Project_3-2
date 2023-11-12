@@ -1,5 +1,6 @@
 package com.example.secondhandmarket
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -17,6 +18,7 @@ class WritePostActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var priceEditText: EditText
     private lateinit var uploadButton: Button
+    private lateinit var backButton2: Button
     private var cnt = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,10 @@ class WritePostActivity : AppCompatActivity() {
         titleEditText = findViewById(R.id.cTitle)
         descriptionEditText = findViewById(R.id.cDes)
         priceEditText = findViewById(R.id.cPrice)
+        backButton2 = findViewById(R.id.backbutton2)
+        backButton2.setOnClickListener{
+           finish()
+        }
         uploadButton = findViewById(R.id.writepostbtn)
         uploadButton.setOnClickListener(View.OnClickListener {
             val title = titleEditText.text.toString()
