@@ -1,6 +1,7 @@
 package com.example.secondhandmarket
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,6 +40,13 @@ class HomeFragment : Fragment() {
             // FAB 버튼 클릭 시 WritePostActivity로 전환
             val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
             intent.putExtra("cnt", cnt) // cnt 값을 Intent에 추가
+            startActivity(intent)
+        }
+        
+        //채팅 보기 페이지
+        val menuChat = binding.menuChat
+        menuChat.setOnClickListener {
+            val intent = Intent(requireContext(), showChatActivity::class.java)
             startActivity(intent)
         }
 
