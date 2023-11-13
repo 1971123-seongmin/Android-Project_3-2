@@ -44,7 +44,7 @@ class MessageAdapter (val itemList : ArrayList<MessageItem>) : RecyclerView.Adap
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = time
         calendar.add(Calendar.HOUR_OF_DAY, 9)
-        val simpleDateFormat = SimpleDateFormat("H:mm", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
         return simpleDateFormat.format(calendar.time)
     }
 }
