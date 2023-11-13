@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
 data class chatItem(
-    val msg : String? = null,
-    val time : Long? = null,
-    var timeString: String? = null
+    val msg: String? = null,
+    val time: Long? = null,
+    var timeString: String? = null,
+    val sender: String? = null,
+    val receiver: String? = null
 )
+
 class ChatAdapter (val itemList : ArrayList<chatItem>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
     //뷰가 만들어질때 호출됨
