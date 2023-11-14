@@ -11,23 +11,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/bubble_color"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:padding="8dp"
         android:text="글자"
-        android:textSize="15dp"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:fontFamily="@font/font"
         android:id="@+id/time"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="시간"
         android:gravity="right"
-        android:textSize="10dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/chatText"
         app:layout_constraintEnd_toStartOf="@+id/chatText"
         app:layout_constraintTop_toTopOf="parent" />

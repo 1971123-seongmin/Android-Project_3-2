@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:hint="상품명을 입력해요!"
+        android:textSize="25dp"
         android:fontFamily="@font/font"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +40,7 @@
         app:layout_constraintVertical_bias="0.279" />
 
     <EditText
+        android:textSize="25dp"
         android:id="@+id/cPrice"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -53,6 +55,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
+        android:textSize="25dp"
         android:id="@+id/cDes"
         android:layout_width="200dp"
         android:layout_height="150dp"
@@ -101,7 +104,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font"
         android:text="상품명"
-        android:textSize="20dp"
+        android:textSize="30dp"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="237dp"
         app:layout_constraintEnd_toStartOf="@+id/cTitle"
@@ -114,7 +117,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font"
         android:text="가격"
-        android:textSize="20dp"
+        android:textSize="30dp"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="237dp"
         app:layout_constraintEnd_toStartOf="@+id/cPrice"
@@ -127,7 +130,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font"
         android:text="상품 설명"
-        android:textSize="20dp"
+        android:textSize="30dp"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="237dp"
         app:layout_constraintEnd_toStartOf="@+id/cDes"
