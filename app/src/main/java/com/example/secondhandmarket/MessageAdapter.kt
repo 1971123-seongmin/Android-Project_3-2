@@ -31,7 +31,7 @@ class MessageAdapter (val itemList : ArrayList<MessageItem>) : RecyclerView.Adap
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return itemList.size //크기 반환
     }
 
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
