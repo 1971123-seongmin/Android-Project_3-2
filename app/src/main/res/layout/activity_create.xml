@@ -5,100 +5,169 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@drawable/view_border"
 tools:context=".CreateActivity">
 
     <TextView
         android:id="@+id/cMaintext"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="269dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="116dp"
+        android:fontFamily="@font/font"
         android:gravity="center"
-        android:text="계정 생성하기"
-        android:textSize="28dp"
+        android:text="회원가입을 해주세요"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198" />
+        app:layout_constraintVertical_bias="0.183" />
 
     <EditText
         android:id="@+id/createemail"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:hint="이메일을 입력하세요"
+        android:fontFamily="@font/font"
+        android:hint="이메일 형식으로 입력하세요!"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <EditText
         android:id="@+id/createpwd"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        android:hint="비밀번호를 입력하세요"
+        android:fontFamily="@font/font"
+        android:hint="6자리 이상을 입력하세요!"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <EditText
         android:id="@+id/cname"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        android:hint="이름을 입력하세요"
+        android:fontFamily="@font/font"
+        android:hint="이름을 입력해요!"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintVertical_bias="0.427" />
+
 
     <EditText
         android:id="@+id/cbirth"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        android:hint="생일을 입력하세요"
+        android:fontFamily="@font/font"
+        android:hint="6자리를 입력해요! ex)000101"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.742" />
-
-    <TextView
-        android:id="@+id/cbirthtext"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:gravity="center"
-        android:text="6자리 입력 ex)000101"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createemail"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintVertical_bias="0.751" />
 
     <Button
         android:id="@+id/realCreateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
+        android:backgroundTint="#46BD7B"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:text="생성하기"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createpwd"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintVertical_bias="0.985" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:text="이메일"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/createemail"
+        app:layout_constraintBottom_toBottomOf="@+id/createemail"
+        app:layout_constraintTop_toTopOf="@+id/createemail" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:text="비밀번호"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="237dp"
+        app:layout_constraintEnd_toStartOf="@+id/createpwd"
+        app:layout_constraintBottom_toBottomOf="@+id/createpwd"
+        app:layout_constraintTop_toTopOf="@+id/createpwd"
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:text="이름"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="299dp"
+        app:layout_constraintEnd_toStartOf="@+id/cname"
+        app:layout_constraintBottom_toBottomOf="@+id/cname"
+        app:layout_constraintTop_toTopOf="@+id/cname"
+         />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:text="생일"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="353dp"
+        app:layout_constraintEnd_toStartOf="@+id/cbirth"
+        app:layout_constraintBottom_toBottomOf="@+id/cbirth"
+        app:layout_constraintTop_toTopOf="@+id/cbirth"
+        />
+
+
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#46BD7B"
+        android:fontFamily="@font/font"
+        android:gravity="center"
+        android:text="뒤로가기"
+        android:textSize="30dp"
+        app:layout_constraintStart_toEndOf="@+id/realCreateBtn"
+        app:layout_constraintTop_toTopOf="@+id/realCreateBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/realCreateBtn"
+        android:layout_marginStart="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

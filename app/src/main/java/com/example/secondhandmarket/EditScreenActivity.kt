@@ -32,6 +32,7 @@ class EditScreenActivity : AppCompatActivity() {
         val updatedTitle = binding.title.text.toString()
         val updatedDescription = binding.description.text.toString()
         val updatedPrice = binding.price.text.toString()
+        val updateStatus = binding.soldTF.text.toString()
 
         database = FirebaseDatabase.getInstance().getReference("Items").child(key)
         database.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -43,7 +44,7 @@ class EditScreenActivity : AppCompatActivity() {
                     "title" to updatedTitle,
                     "description" to updatedDescription,
                     "price" to updatedPrice,
-                    "status" to item?.status,  // 기존 값 유지
+                    "status" to updateStatus,
                     "seller" to item?.seller   // 기존 값 유지
                 )
 

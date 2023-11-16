@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/view_border">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_item"
@@ -12,7 +13,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardCornerRadius="10dp"
         android:layout_marginVertical="10dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="10dp"
         app:cardElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,10 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:padding="2dp"
-                android:textSize="12sp"
-                android:text="판매여부"
-                android:background="@drawable/title_border"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/font"
+                android:text="판매여부" />
 
             <TextView
                 android:id="@+id/item_title"
@@ -52,7 +52,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="100dp"
                 android:text="Main title"
-                android:textSize="25dp"/>
+                android:fontFamily="@font/font"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/item_price"
@@ -60,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
                 android:text="판매가격"
-                android:textSize="15sp"
+                android:textSize="25sp"
+                android:fontFamily="@font/font"
                 android:textStyle="bold"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
