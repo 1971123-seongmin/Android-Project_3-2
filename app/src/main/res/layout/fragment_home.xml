@@ -14,72 +14,21 @@
         android:background="#124742"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="-1dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <TextView
             android:id="@+id/toolbar_title"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="중고 거래"
             android:textColor="#FFFFFF"
             android:textSize="25dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/menu_filter"
-            android:layout_width="50dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_filter_alt_24"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.67"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/menu_chat"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_chat_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.814"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/menu_Logout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/baseline_exit_to_app_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.956"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_gravity="left"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/write"
@@ -98,8 +47,10 @@
         app:backgroundTint="#124742"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0"
         app:tint="@color/white"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -112,9 +63,45 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.444"
         tools:listitem="@layout/item" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_Logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_exit_to_app_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_filter"
+        android:layout_width="46dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/baseline_filter_alt_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_chat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_chat_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.608" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.example.secondhandmarket
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -23,19 +21,26 @@ class LogoutActivity : AppCompatActivity() {
 
         val logoutButton: Button = findViewById(R.id.menu_Logout)
         auth = FirebaseAuth.getInstance()
+
+        logoutButton.setOnClickListener{
+            showCustomDialog()
+        }
     }
-        private fun showDialog(message: String?) {
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.logout_dialog)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        private fun showCustomDialog() {
+            val dialogBinding = layoutInflater.inflate(R.layout.logout_dialog, null)
 
-            val logoutMsg : TextView = dialog.findViewById(R.id.logoutMsg)
-            val btnYes : Button = dialog.findViewById(R.id.btnYes)
-            val btnNo : Button = dialog.findViewById(R.id.btnNo)
+            val myDialog = Dialog(this)
+            myDialog.setContentView(dialogBinding)
 
-            logoutMsg.text = message
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+
+            val logoutMsg : TextView = myDialog.findViewById(R.id.logoutMsg)
+            val btnYes : Button = myDialog.findViewById(R.id.btnYes)
+            val btnNo : Button = myDialog.findViewById(R.id.btnNo)
+
+            logoutMsg.text = "로그아웃 하시겠습니까?"
 
             btnYes.setOnClickListener{
                 auth.signOut()
@@ -46,7 +51,9 @@ class LogoutActivity : AppCompatActivity() {
             }
 
             btnNo.setOnClickListener{
-                dialog.dismiss();
+                myDialog.dismiss()
             }
+
+            myDialog.show()
         }
 }
