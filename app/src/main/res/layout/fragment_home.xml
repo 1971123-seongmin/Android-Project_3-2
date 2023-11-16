@@ -18,57 +18,68 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="-1dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/menu_Logout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="350dp"
-        android:layout_weight="1"
-        android:src="@drawable/baseline_exit_to_app_24"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="9dp" />
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:text="중고 거래"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/menu_filter"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_filter_alt_24"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/menu_chat"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="12dp"
             android:layout_weight="1"
+            android:layout_marginTop="3dp"
             android:src="@drawable/baseline_chat_24"
-            app:layout_constraintEnd_toStartOf="@+id/menu_Logout"
-            tools:layout_editor_absoluteY="9dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.814"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/menu_filter"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="12dp"
+            android:id="@+id/menu_Logout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:src="@drawable/baseline_filter_alt_24"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/baseline_exit_to_app_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/menu_chat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="중고 거래"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.391" />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/write"
@@ -84,7 +95,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/baseline_write_24"
-        app:backgroundTint="@color/purple"
+        app:backgroundTint="#124742"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

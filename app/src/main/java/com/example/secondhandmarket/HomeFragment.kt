@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import kotlin.math.log
 
 class HomeFragment : Fragment() {
     private var selectedStatus: String? = null
@@ -34,6 +35,13 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // 로그아웃 페이지
+        val menuLogout = binding.menuLogout
+        menuLogout.setOnClickListener{
+            val intent = Intent(this@HomeFragment.requireActivity(), LogoutActivity::class.java)
+            startActivity(intent)
+        }
 
         // FAB (버튼) 클릭 이벤트 처리
         writeButton = binding?.write
