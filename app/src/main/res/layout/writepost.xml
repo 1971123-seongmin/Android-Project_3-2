@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WritePostActivity"
-    android:background="@drawable/view_border">
+    android:background="@drawable/view_border"
+    tools:context=".WritePostActivity">
 
     <TextView
         android:id="@+id/cMaintext"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="116dp"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:text="글 작성하기"
-        android:fontFamily="@font/font"
         android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +28,9 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
+        android:fontFamily="@font/font"
         android:hint="상품명을 입력하세요!"
         android:textSize="25dp"
-        android:fontFamily="@font/font"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -40,13 +39,13 @@
         app:layout_constraintVertical_bias="0.279" />
 
     <EditText
-        android:textSize="25dp"
         android:id="@+id/cPrice"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
-        android:hint="가격을 입력하세요!"
         android:fontFamily="@font/font"
+        android:hint="가격을 입력하세요!"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -55,13 +54,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:textSize="25dp"
         android:id="@+id/cDes"
         android:layout_width="200dp"
         android:layout_height="150dp"
         android:layout_marginBottom="300dp"
         android:fontFamily="@font/font"
         android:hint="상품 설명을 입력하세요!"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -85,19 +84,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cMaintext"
         app:layout_constraintVertical_bias="0.985" />
+
     <Button
         android:id="@+id/backbutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:backgroundTint="#46BD7B"
         android:fontFamily="@font/font"
         android:gravity="center"
         android:text="뒤로가기"
         android:textSize="30dp"
-        app:layout_constraintStart_toEndOf="@+id/writepostbtn"
-        app:layout_constraintTop_toTopOf="@+id/writepostbtn"
         app:layout_constraintBottom_toBottomOf="@+id/writepostbtn"
-        android:layout_marginStart="8dp" />
+        app:layout_constraintStart_toEndOf="@+id/writepostbtn"
+        app:layout_constraintTop_toTopOf="@+id/writepostbtn" />
+
     <TextView
         android:id="@+id/wtextView"
         android:layout_width="wrap_content"
@@ -105,12 +106,12 @@
         android:fontFamily="@font/font"
         android:text="상품명"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="237dp"
-        app:layout_constraintEnd_toStartOf="@+id/cTitle"
         app:layout_constraintBottom_toBottomOf="@+id/cTitle"
+        app:layout_constraintEnd_toStartOf="@+id/cTitle"
         app:layout_constraintTop_toTopOf="@+id/cTitle"
-        />
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="237dp" />
+
     <TextView
         android:id="@+id/wtextView2"
         android:layout_width="wrap_content"
@@ -118,12 +119,12 @@
         android:fontFamily="@font/font"
         android:text="가격"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="237dp"
-        app:layout_constraintEnd_toStartOf="@+id/cPrice"
         app:layout_constraintBottom_toBottomOf="@+id/cPrice"
+        app:layout_constraintEnd_toStartOf="@+id/cPrice"
         app:layout_constraintTop_toTopOf="@+id/cPrice"
-        />
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="237dp" />
+
     <TextView
         android:id="@+id/wtextView3"
         android:layout_width="wrap_content"
@@ -131,12 +132,11 @@
         android:fontFamily="@font/font"
         android:text="상품 설명"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="237dp"
-        app:layout_constraintEnd_toStartOf="@+id/cDes"
         app:layout_constraintBottom_toBottomOf="@+id/cDes"
+        app:layout_constraintEnd_toStartOf="@+id/cDes"
         app:layout_constraintTop_toTopOf="@+id/cDes"
-        />
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="237dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
