@@ -42,8 +42,8 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
         }
 
         // Check the status and set the appropriate text
-        val statusText = if (currentItem.status == "판매중") {
-            "판매중"
+        val statusText = if (currentItem.status == "판매 중") {
+            "판매 중"
         } else {
             "판매 완료"
         }

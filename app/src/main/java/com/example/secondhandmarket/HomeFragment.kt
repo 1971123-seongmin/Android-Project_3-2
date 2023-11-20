@@ -1,13 +1,17 @@
 package com.example.secondhandmarket
 
+import android.app.Dialog
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +23,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
-import kotlin.math.log
 
 class HomeFragment : Fragment() {
     private var selectedStatus: String? = null
@@ -33,14 +35,16 @@ class HomeFragment : Fragment() {
     private var writeButton: FloatingActionButton? = null
     private var cnt = 0; //파이어베이스 db에 저장될 고유 키 번호
 
+    private lateinit var query : Query
+    private lateinit var valueEventListener : ValueEventListener
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // 로그아웃 페이지
-        val menuLogout = binding.menuLogout
-        menuLogout.setOnClickListener{
-            val intent = Intent(this@HomeFragment.requireActivity(), LogoutActivity::class.java)
-            startActivity(intent)
+        //로그아웃 버튼
+        val logoutButton = binding.menuLogout
+        logoutButton.setOnClickListener{
+            showCustomDialog()
         }
 
         // FAB (버튼) 클릭 이벤트 처리
@@ -70,13 +74,13 @@ class HomeFragment : Fragment() {
                 when (item.itemId) {
                     R.id.sell_progress -> {
                         // "판매중" 메뉴 아이템 클릭 시 처리
-                        selectedStatus = "판매중"
+                        selectedStatus = "판매 중"
                         updateItemList()
                         return@setOnMenuItemClickListener true
                     }
                     R.id.sell_completed -> {
 
-                        selectedStatus = "판매완료"
+                        selectedStatus = "판매 완료"
                         updateItemList()
                         return@setOnMenuItemClickListener true
                     }
@@ -102,13 +106,49 @@ class HomeFragment : Fragment() {
         getItemData()
     }
 
+    //로그아웃 다이얼로그를 띄우는 함수
+    private fun showCustomDialog() {
+        val dialogBinding = layoutInflater.inflate(R.layout.logout_dialog, null)
+
+        val auth = FirebaseAuth.getInstance()
+
+        val myDialog = Dialog(requireContext())
+        myDialog.setContentView(dialogBinding)
+
+        myDialog.setCancelable(true) //다이얼로그 취소 가능함
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        val logoutMsg : TextView = myDialog.findViewById(R.id.logoutMsg)
+        val btnYes : Button = myDialog.findViewById(R.id.btnYes)
+        val btnNo : Button = myDialog.findViewById(R.id.btnNo)
+
+        logoutMsg.text = "로그아웃 하시겠습니까?"
+
+        btnYes.setOnClickListener{
+            auth.signOut()
+            query.removeEventListener(valueEventListener)
+
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            myDialog.dismiss()
+        }
+
+        btnNo.setOnClickListener{
+            myDialog.dismiss()
+        }
+
+        myDialog.show()
+    }
+
     private fun updateItemList() {
         val filteredItems = when (selectedStatus) {
-            "판매중" -> {
-                itemList.filter { it.status == "판매중" }
+            "판매 중" -> {
+                itemList.filter { it.status == "판매 중" }
             }
-            "판매완료" -> {
-                itemList.filter { it.status == "판매완료" }
+            "판매 완료" -> {
+                itemList.filter { it.status == "판매 완료" }
             }
             else -> {
                 itemList
@@ -133,7 +173,7 @@ class HomeFragment : Fragment() {
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
 
-        val query = if (selectedStatus != null) {
+        query = if (selectedStatus != null) {
             // 선택된 상태에 따라 Firebase 쿼리 설정
             storageRef.orderByChild("status").equalTo(selectedStatus)
         } else {
@@ -141,8 +181,9 @@ class HomeFragment : Fragment() {
         }
 
         val keys = mutableListOf<String>() //DB에서 Items 밑에 고유 키값을 가져오기위한 list
+        //query.addValueEventListener(object : ValueEventListener
 
-        query.addValueEventListener(object : ValueEventListener {
+        valueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
 
@@ -163,9 +204,10 @@ class HomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "error: $error", Toast.LENGTH_SHORT).show()
+
             }
-        })
+        }
+        query.addValueEventListener(valueEventListener)
 
 
         val userEmail = FirebaseAuth.getInstance().currentUser?.email //현재 사용자의 email

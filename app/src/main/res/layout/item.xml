@@ -44,7 +44,7 @@
                 android:layout_marginLeft="100dp"
                 android:textSize="20sp"
                 android:fontFamily="@font/font"
-                android:text="판매여부" />
+                android:text="판매 여부" />
 
             <TextView
                 android:id="@+id/item_title"
