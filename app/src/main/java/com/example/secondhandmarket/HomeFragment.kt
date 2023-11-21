@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ItemAdapter
     private lateinit var itemList: MutableList<ItemModel>
     private var writeButton: FloatingActionButton? = null
-    private var cnt = 0 //파이어베이스 db에 저장될 고유 키 번호
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -47,10 +46,8 @@ class HomeFragment : Fragment() {
         // FAB (버튼) 클릭 이벤트 처리
         writeButton = binding?.write
         writeButton?.setOnClickListener {
-            cnt ++
             // FAB 버튼 클릭 시 WritePostActivity로 전환
             val intent = Intent(this@HomeFragment.requireActivity(), WritePostActivity::class.java)
-            intent.putExtra("cnt", cnt) // cnt 값을 Intent에 추가
             startActivity(intent)
         }
         
