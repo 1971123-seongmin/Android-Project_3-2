@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhandmarket.databinding.ItemBinding
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
@@ -34,6 +35,18 @@ class ItemAdapter(private var itemList: List<ItemModel>): RecyclerView.Adapter<I
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
+
+        val storageReference = FirebaseStorage.getInstance().reference
+        val imageReference = storageReference.child("image/item1.jpg")
+
+        imageReference.downloadUrl.addOnSuccessListener { uri ->
+            Picasso.get()
+                .load(uri)
+                .into(holder.binding.itemImg)
+        }.addOnFailureListener { e ->
+
+        }
+
         holder.binding.itemTitle.text = currentItem.title
 
         //리사이클러 뷰의 아이템 클릭리스너

@@ -21,6 +21,7 @@
         android:layout_margin="30dp">
 
         <ImageView
+            android:background="#80FF00"
             android:id="@+id/item_img"
             android:layout_width="80dp"
             android:layout_height="80dp"

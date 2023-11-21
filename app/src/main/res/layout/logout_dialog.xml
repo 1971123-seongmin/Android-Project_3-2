@@ -35,6 +35,8 @@
             android:gravity="center">
 
             <Button
+                android:fontFamily="@font/font"
+                android:textSize="30dp"
                 android:id="@+id/btnYes"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -43,13 +45,15 @@
                 android:textColor="@color/black" />
 
             <Button
-            android:id="@+id/btnNo"
-            android:textColor="@color/white"
-            android:text="아니요"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#CDCDCD"
-            android:layout_margin="10dp" />
+                android:fontFamily="@font/font"
+                android:textSize="30dp"
+                android:id="@+id/btnNo"
+                android:textColor="@color/black"
+                android:text="아니요"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
