@@ -118,7 +118,6 @@ class HomeFragment : Fragment() {
         myDialog.setCancelable(true) //다이얼로그 취소 가능함
         myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-
         val logoutMsg : TextView = myDialog.findViewById(R.id.logoutMsg)
         val btnYes : Button = myDialog.findViewById(R.id.btnYes)
         val btnNo : Button = myDialog.findViewById(R.id.btnNo)
