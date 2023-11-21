@@ -33,10 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ItemAdapter
     private lateinit var itemList: MutableList<ItemModel>
     private var writeButton: FloatingActionButton? = null
-    private var cnt = 0; //파이어베이스 db에 저장될 고유 키 번호
-
-    private lateinit var query : Query
-    private lateinit var valueEventListener : ValueEventListener
+    private var cnt = 0 //파이어베이스 db에 저장될 고유 키 번호
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -105,6 +102,10 @@ class HomeFragment : Fragment() {
         init()
         getItemData()
     }
+    override fun onResume() { //항상 화면이 업데이트 되도록 함
+        super.onResume()
+        getItemData()
+    }
 
     //로그아웃 다이얼로그를 띄우는 함수
     private fun showCustomDialog() {
@@ -126,11 +127,12 @@ class HomeFragment : Fragment() {
 
         btnYes.setOnClickListener{
             auth.signOut()
-            query.removeEventListener(valueEventListener)
+            //query.removeEventListener(valueEventListener)
 
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            Toast.makeText(requireContext(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
             myDialog.dismiss()
         }
 
@@ -172,7 +174,7 @@ class HomeFragment : Fragment() {
 
         storageRef = FirebaseDatabase.getInstance().reference.child("Items")
 
-        query = if (selectedStatus != null) {
+        val query = if (selectedStatus != null) {
             // 선택된 상태에 따라 Firebase 쿼리 설정
             storageRef.orderByChild("status").equalTo(selectedStatus)
         } else {
@@ -182,7 +184,7 @@ class HomeFragment : Fragment() {
         val keys = mutableListOf<String>() //DB에서 Items 밑에 고유 키값을 가져오기위한 list
         //query.addValueEventListener(object : ValueEventListener
 
-        valueEventListener = object : ValueEventListener {
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
 
@@ -197,17 +199,16 @@ class HomeFragment : Fragment() {
                     }
 
                     // 여기서 itemList를 업데이트하고 어댑터에 새 목록을 설정
-                    adapter.updateList(itemList)
-                    binding.recyclerView.visibility = View.VISIBLE
+
                 }
+                adapter.updateList(itemList)
+                binding.recyclerView.visibility = View.VISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                Log.d("오류", "error:불러오기 실패")
             }
-        }
-        query.addValueEventListener(valueEventListener)
-
+        })
 
         val userEmail = FirebaseAuth.getInstance().currentUser?.email //현재 사용자의 email
 
