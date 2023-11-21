@@ -3,6 +3,7 @@ package com.example.secondhandmarket
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.secondhandmarket.databinding.ActivityDetailScreenBinding
 import com.example.secondhandmarket.databinding.ActivityModfiyScreenBinding
@@ -55,7 +56,7 @@ class ModifyScreenActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ModifyScreenActivity, "error: 불러오기 실패", Toast.LENGTH_SHORT).show()
+                Log.d("오류", "error:불러오기 실패")
             }
         })
     }
