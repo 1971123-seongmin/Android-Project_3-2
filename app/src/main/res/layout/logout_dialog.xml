@@ -18,11 +18,11 @@
         <TextView
             android:id="@+id/logoutMsg"
             android:text="로그아웃 하시겠습니까?"
-            android:textSize="15sp"
+            android:fontFamily="@font/font"
+            android:textSize="25sp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:gravity="center"
             android:padding="10dp"/>
 
