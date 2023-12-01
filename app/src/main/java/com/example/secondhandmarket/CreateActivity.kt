@@ -62,8 +62,9 @@ class CreateActivity : AppCompatActivity() {
                         mDatabaseRef.child("UserAccount").child(firebaseUser?.uid ?: "").setValue(account)
 
                         Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, LoginActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         Toast.makeText(this, "회원가입 실패!", Toast.LENGTH_SHORT).show()
                     }

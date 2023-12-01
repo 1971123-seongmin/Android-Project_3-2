@@ -32,18 +32,21 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val pwd = binding.pwd.text.toString()
 
-            auth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(this) {
-                    task ->
-                if(task.isSuccessful) {  //로그인 성공한 경우
-                    val user = auth.currentUser // 현재 인증된 사용자의 ID
-                    //updateUI(user)
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            if (email.isEmpty() || pwd.isEmpty()) {
+                Toast.makeText(this, "이메일과 비밀번호를 모두 입력하세요.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                auth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {  //로그인 성공한 경우
+                        val user = auth.currentUser // 현재 인증된 사용자의 ID
+                        //updateUI(user)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-
         }
     }
 
